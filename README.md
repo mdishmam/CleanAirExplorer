@@ -5,8 +5,8 @@ Clean Air Explorer is a Django REST API application that provides information ab
 ## Data Sources
 
 - Weather and air quality data is fetched from the [Open-Meteo API](https://open-meteo.com/)
-- District information is loaded from a local JSON file
-- The application focuses on Bangladesh districts (timezone: Asia/Dhaka)
+- District information is loaded from [here](https://raw.githubusercontent.com/strativ-dev/technical-screening-test/main/bd-districts.json)
+- The application focuses on all districts of Bangladesh (timezone: Asia/Dhaka)
 - Temperature data is measured in Celsius and air quality in PM2.5 concentration
 
 ## Features

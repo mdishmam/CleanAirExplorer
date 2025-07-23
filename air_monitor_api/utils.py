@@ -1,5 +1,7 @@
-import json
+
 import os
+import json
+import requests
 import openmeteo_requests
 import requests_cache
 from retry_requests import retry
@@ -14,10 +16,22 @@ openmeteo = openmeteo_requests.Client(session=retry_session)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+DISTRICT_DATA_URL = "https://raw.githubusercontent.com/strativ-dev/technical-screening-test/main/bd-districts.json"
+
 def load_districts():
-    with open(os.path.join(BASE_DIR, 'districts.json'), 'r', encoding='utf-8') as file:
-        data = json.load(file)
+    try:
+        response = requests.get(DISTRICT_DATA_URL, timeout=10)
+        response.raise_for_status()
+        data = response.json()
         return data['districts']
+    except requests.RequestException as e:
+        print(f"Error fetching districts data: {e}")
+        return []
+
+# def load_districts():
+#     with open(os.path.join(BASE_DIR, 'districts.json'), 'r', encoding='utf-8') as file:
+#         data = json.load(file)
+#         return data['districts']
 
 
 def get_weather_and_air_quality(latitude, longitude, start_date=None, end_date=None):
