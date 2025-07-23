@@ -143,6 +143,3 @@ Compares user's current location with a destination to recommend travel based on
      ```
    - Click Send
 
-## License
-
-[MIT License](LICENSE)
